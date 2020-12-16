@@ -1,0 +1,175 @@
+﻿<Window x:Class="POS_and_Inventory_Management_System.Windows.ManageCategory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS_and_Inventory_Management_System.Windows"
+        mc:Ignorable="d"
+        Title="ManageCategory" Height="650" Width="1000" Loaded="Window_Loaded" Closed="Window_Closed">
+
+    <Window.Resources>
+        <Style TargetType="TextBox" >
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                                CornerRadius="5"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                Background="GhostWhite"
+>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                Focusable="false"
+                                HorizontalScrollBarVisibility="Hidden"
+                                VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="blue"/>
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="Blue" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="Blue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,8,0,0"/>
+            <Setter Property="Foreground" Value="#323031"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+
+    </Window.Resources>
+
+
+    <Grid>
+
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/POS and Inventory Management System;component/Assets/asia.jpg" Stretch="None">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2" ScaleY="2"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </StackPanel.Background>
+           
+            <GroupBox BorderThickness="4" BorderBrush="Gray" Margin="10">
+
+                <GroupBox.Header>
+                    <Label FontSize="40" HorizontalAlignment="Center" Foreground="#FF1E737C">Manage Category</Label>
+
+                </GroupBox.Header>
+                
+                <StackPanel Orientation="Horizontal" Margin="10">
+    
+
+                    <StackPanel  Orientation="Vertical">
+
+                        <TextBlock x:Name="label" Text="Search By: " FontSize="20" FontWeight="UltraLight" Margin="0,20,0,0"  HorizontalAlignment="Center"/>
+
+
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,0" HorizontalAlignment="Center">
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,20">
+                                <TextBlock x:Name="labelSearchName" Text="Name: " FontSize="15"/>
+                                <TextBox x:Name="textBoxSearchName" Width="100"  HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="textBoxSearchName_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,20">
+                                <TextBlock x:Name="labelSearchType" Text="Type: " FontSize="15"/>
+                                <TextBox x:Name="textBoxSearchType" Width="100"    HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="textBoxSearchType_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,20">
+                                <TextBlock x:Name="labelSearchUnit" Text="Unit: " FontSize="15"/>
+                                <TextBox x:Name="textBoxSearchUnit" Width="100"    HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextChanged="textBoxSearchUnit_TextChanged"/>
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+
+
+                    </StackPanel>
+
+
+
+                    <StackPanel HorizontalAlignment="Center" Margin="100,0,0,0">
+
+                        <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                            <TextBlock x:Name="labelCategoryID" Text="Category ID: " FontSize="20"/>
+                            <TextBlock x:Name="labelCategoryIDModify" Width="100" Height="30" Margin="10,0,0,0" FontSize="20" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                            <TextBlock x:Name="labelCategoryName" Text="Category Name: " FontSize="20"/>
+                            <TextBox x:Name="textBoxCategoryName" Width="180" Height="30" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                            <TextBlock x:Name="labelType" Text="Type: " FontSize="20" />
+                            <TextBox x:Name="textBoxType" Width="225" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
+                            <TextBlock x:Name="labelUnit" Text="Unit: " FontSize="20"/>
+                            <TextBox x:Name="textBoxUnit"  Width="222" Height="30" PreviewTextInput="NumberValidation" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button x:Name="buttonClear" HorizontalAlignment="Left" Margin="20,10,0,0" Content="Clear" FontSize="15" Width="80" Height="40" IsEnabled="True" Click="buttonClear_Click" />
+
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="80,0,0,0" >
+
+                        <Button x:Name="buttonAddCategory"  Margin="20,20,0,0" Content="Add " FontSize="20" Width="120" Height="40" Click="buttonAddCategory_Click" />
+                        <Button x:Name="buttonUpdateCategory" Margin="20,20,0,0" Content="Update" FontSize="20" Width="120" Height="40" IsEnabled="False" Click="buttonUpdateCategory_Click" />
+                        <Button x:Name="buttonDeleteCategory" Margin="20,20,0,0" Content="Delete" FontSize="20" Width="120" Height="40" IsEnabled="False" Click="buttonDeleteCategory_Click" />
+
+
+                    </StackPanel>
+
+                </StackPanel>
+
+
+
+            </GroupBox>
+
+
+
+
+
+            <DataGrid x:Name="dataGridBrand" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"  Grid.Row="0" Width="auto" Height="260" Cursor="UpArrow" ColumnWidth="*" Margin="0,0,0,0" SelectionChanged="dataGridBrand_SelectionChanged" IsReadOnly="True">
+            </DataGrid>
+
+
+        </StackPanel>
+
+
+
+
+
+    </Grid>
+</Window>
